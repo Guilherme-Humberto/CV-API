@@ -1,4 +1,4 @@
-import { User } from '../../models/User'
+import { User } from '../../models/Users'
 
 export default {
     async create(req, res) {
