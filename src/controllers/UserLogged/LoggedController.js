@@ -1,4 +1,4 @@
-import { Historic } from '../../models/Logged/Historics'
+import { Historic } from '../../models/Historics'
 
 export default {
     async register(req, res) {
@@ -12,7 +12,7 @@ export default {
             return teste
         }
         catch (error) {
-            res.send({ error: "Erro ao adicionar histórico" })
+            res.send({ error: "Erro ao adicionar histórico" + error })
         }
     },
     async listar (req, res) {
