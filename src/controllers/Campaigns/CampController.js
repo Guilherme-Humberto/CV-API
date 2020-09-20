@@ -11,5 +11,9 @@ export default {
         catch (error) {
             return res.send({ error: "Erro ao criar campanha" })
         }
+    },
+    async list (req, res) {
+        const camp = Camp.find()
+        return res.send({ camp })
     } 
 }
