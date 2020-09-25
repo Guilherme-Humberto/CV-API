@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Mongoose } from 'mongoose'
 
 const HistoricSchema = new Schema({
     local: {
@@ -13,6 +13,10 @@ const HistoricSchema = new Schema({
     typeDonation: {
         type: String,
         required: true
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 })
 
