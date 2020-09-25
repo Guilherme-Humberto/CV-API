@@ -9,7 +9,7 @@ export default {
                 return res.send({ error: "Você já fez essa doação" })
             }
             const teste = await Historic.create(req.body)
-            return teste
+            return res.send({ teste })
         }
         catch (error) {
             res.send({ error: "Erro ao adicionar histórico" + error })
