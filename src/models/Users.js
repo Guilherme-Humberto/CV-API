@@ -3,16 +3,13 @@ import  crypto from 'crypto'
 
 const UserSchema = new Schema({
     name: {
-        type: String,
-        required: true
+        type: String
     },
     email: {
-        type: String,
-        required: true
+        type: String
     },
     password: {
         type: String,
-        required: true,
         set: value => 
             crypto
                 .createHash("md5")
@@ -20,13 +17,18 @@ const UserSchema = new Schema({
                 .digest("hex")
     },
     age: {
-        type: String,
-        required: true
+        type: String
     },
     cpf: {
-        type: String,
-        required: true
-    }
+        type: String
+    },
+
+    // Campos opicionais
+    bio: { required: false, type: String },
+    adress: { required: false, type: String },
+    cell: { required: false, type: String },
+    phone: { required: false, type: String },
+    bloodtype: { required: false, type: String },
 })
 
 const User = model("User", UserSchema)
