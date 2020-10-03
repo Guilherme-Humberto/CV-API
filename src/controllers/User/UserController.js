@@ -15,10 +15,20 @@ export default {
                 expiresIn: 86400
             })
 
-            return res.send({ user , token})
+            return res.send({ user, token })
         }
         catch (error) {
             return res.send({ error: `Erro ao criar usuário ${error}` })
         }
+    },
+
+    async listUser (req, res) {
+        const user = await User.find();
+        return res.send({ user })
+    },
+
+    async editUser (req, res) {
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        return res.send(user)
     }
 }
