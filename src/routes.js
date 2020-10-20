@@ -8,7 +8,7 @@ router.get("/listUser", controller.listUser)
 router.post("/register", controller.create)
 router.put("/editUser/:id", controller.editUser)
 router.post("/login", session.authenticated)
-router.post("/historic/:id", historic.register)
-router.get("/historic/list", historic.listar)
+router.post("/historic/:user_id", historic.register)
+router.get("/historic/list/:user_id", historic.listar)
 
 export { router }
