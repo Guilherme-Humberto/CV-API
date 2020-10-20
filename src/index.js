@@ -3,6 +3,7 @@ const app = express()
 import bodyparser from 'body-parser'
 import cors from 'cors'
 import { router } from './routes'
+
 import './database/connection'
 
 app.use(cors())
