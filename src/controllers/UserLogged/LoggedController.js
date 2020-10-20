@@ -3,12 +3,18 @@ import { Historic } from '../../models/Historics'
 export default {
     async register(req, res) {
         try {
-            const { date } = req.body
+            const { user_id } = req.params
+            const { local, date, typeDonation } = req.body
 
             if (await Historic.findOne({ date })) {
                 return res.send({ error: "Você já fez essa doação" })
             }
-            const teste = await Historic.create(req.body)
+            const teste = await Historic.create({
+                user: user_id,
+                local,
+                date,
+                typeDonation
+            })
             return res.send({ teste })
         }
         catch (error) {
@@ -16,7 +22,8 @@ export default {
         }
     },
     async listar (req, res) {
-        const registros = await Historic.find()
-        return res.send({ registros })
+        const { id } = req.params
+        const registros = await Historic.findById({ id })
+        return res.json(registros)
     }
 }
