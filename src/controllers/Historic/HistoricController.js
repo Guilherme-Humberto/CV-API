@@ -9,21 +9,26 @@ export default {
             if (await Historic.findOne({ date })) {
                 return res.send({ error: "Você já fez essa doação" })
             }
-            const teste = await Historic.create({
+            const historic = await Historic.create({
                 user: user_id,
                 local,
                 date,
                 typeDonation
             })
-            return res.send({ teste })
+            return res.json(historic)
         }
         catch (error) {
             res.send({ error: "Erro ao adicionar histórico" + error })
         }
     },
     async listar (req, res) {
-        const { id } = req.params
-        const registros = await Historic.findById({ id })
+        const { user_id } = req.params
+        const registros = await Historic.find({ user: user_id })
         return res.json(registros)
-    }
+    },
+
+    // async destroy (req, res) {
+    //     const { user_id } = req.params
+    //     await Historic.findByIdAndDelete(user_id)
+    // }
 }
