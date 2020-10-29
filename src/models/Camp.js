@@ -5,12 +5,20 @@ const CampSchema = new Schema({
         type: String,
         required: true
     },
-    title: {
+    name: {
         type: String,
         required: true,
         unique: true
     },
-    description: {
+    desc: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    phone: {
         type: String,
         required: true
     },

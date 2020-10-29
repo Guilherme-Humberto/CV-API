@@ -27,7 +27,6 @@ const UserSchema = new Schema({
     bio: { required: false, type: String },
     adress: { required: false, type: String },
     cell: { required: false, type: String },
-    phone: { required: false, type: String },
     bloodtype: { required: false, type: String },
 })
 

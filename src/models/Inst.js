@@ -1,29 +1,33 @@
 import { Schema, model } from 'mongoose'
 
 const InstSchema = new Schema({
-    img: {
-        type: String,
-        required: true
-    },
     name: {
         type: String,
         required: true,
         unique: true
     },
-    description: {
+    desc: {
         type: String,
         required: true
     },
-    about: {
+    text: {
         type: String,
         required: true
     },
-    latitude: {
+    lat: {
         type: Number,
         required: true
     },
-    longitude: {
+    long: {
         type: Number,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
         required: true
     },
     createAt: {
