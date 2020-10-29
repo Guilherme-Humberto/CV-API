@@ -1,19 +1,28 @@
-import { Camp } from '../../models/Campaigns'
+import { Camp } from '../../models/Camp'
 
 export default {
     async create(req, res) {
-        const { title } = req.body
+        const { name } = req.body
+
         try {
-            const camp = await Camp.findOne({ title })
-            if(camp) return res.send({ error: "Campanha já existe" })
-            return res.send({ camp })
+            if(await Camp.findOne({ name })) {
+                return res.send({ error: "Campanha já existe" })
+            }
+            const camp = await Camp.create(req.body)
+
+            return res.json(camp)
         }
         catch (error) {
-            return res.send({ error: "Erro ao criar campanha" })
+            return res.send({ error: "Erro ao criar campanha" + error })
         }
     },
     async list (req, res) {
-        const camp = Camp.find()
-        return res.send({ camp })
-    } 
+        const { limit } = req.query
+        const camp = await Camp.find().limit(parseInt(limit))
+        return res.send(camp)
+    },
+
+    async destroy (req, res) {
+        await Camp.findByIdAndDelete(req.params.id)
+    }
 }
