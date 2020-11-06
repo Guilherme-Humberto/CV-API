@@ -6,10 +6,6 @@ export default {
             const { user_id } = req.params
             const { local, typeDonation } = req.body
 
-            // if (await Historic.findOne({ date })) {
-            //     return res.send({ error: "Você já fez essa doação" })
-            // }
-
             const data = Date.now()
             const today = new Date(data)
 

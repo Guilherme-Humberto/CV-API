@@ -5,6 +5,7 @@ import authConfig from '../../config/auth.json'
 export default {
     async create(req, res) {
         const { email } = req.body
+        
         try {
             if(await User.findOne({ email })) {
                 return res.send({ error: "Usuário já existe" })
@@ -28,7 +29,17 @@ export default {
     },
 
     async editUser (req, res) {
-        const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        const { filename } = req.file
+        const { adress, number, bio, cell, blood } = req.body
+
+        const user = await User.findByIdAndUpdate(req.params.id, {
+            img: filename,
+            adress,
+            number,
+            bio,
+            cell,
+            blood
+        }, { new: true })
         return res.send(user)
     }
 }
