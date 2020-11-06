@@ -1,5 +1,8 @@
 import express from 'express'
 const router = express.Router()
+import multer from 'multer'
+import multerConfig from './config/multer'
+
 import controller from './controllers/User/UserController'
 import session from './controllers/User/UserSessionController'
 import historic from './controllers/Historic/HistoricController'
@@ -8,8 +11,9 @@ import institutions from './controllers/Institutions/InstController'
 
 router.get("/listUser", controller.listUser)
 router.post("/register", controller.create)
-router.put("/editUser/:id", controller.editUser)
+router.put("/editUser/:id", multer(multerConfig).single('img'), controller.editUser)
 router.post("/login", session.authenticated)
+router.post("/forgot", session.forgotPassword)
 
 router.post("/historic/:user_id", historic.register)
 router.get("/historic/list/:user_id", historic.listar)
