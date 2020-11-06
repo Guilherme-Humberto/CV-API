@@ -2,12 +2,12 @@ import { model, Schema } from 'mongoose'
 import  crypto from 'crypto'
 
 const UserSchema = new Schema({
-    name: {
-        type: String
+    name: String,
+    img: {
+        type: String,
+        required: false
     },
-    email: {
-        type: String
-    },
+    email: String,
     password: {
         type: String,
         set: value => 
@@ -16,18 +16,20 @@ const UserSchema = new Schema({
                 .update(value)
                 .digest("hex")
     },
-    age: {
-        type: String
-    },
-    cpf: {
-        type: String
-    },
+    age: String,
+    adress: String,
+    number: Number,
+    bio: String,
+    cell: String,
+    blood: String
+}, {
+    toJSON: {
+        virtuals: true
+    }
+})
 
-    // Campos opicionais
-    bio: { required: false, type: String },
-    adress: { required: false, type: String },
-    cell: { required: false, type: String },
-    bloodtype: { required: false, type: String },
+UserSchema.virtual('image_url').get(function() {
+    return `http://localhost:5001/files/${this.img}`
 })
 
 const User = model("User", UserSchema)
