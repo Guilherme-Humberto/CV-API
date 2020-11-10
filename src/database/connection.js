@@ -1,5 +1,5 @@
-import { connect } from 'mongoose'
-import 'dotenv/config'
+const { connect } = require ('mongoose')
+require('dotenv/config')
 
 connect(process.env.DB_CONNECTION, {  
     useNewUrlParser: true,

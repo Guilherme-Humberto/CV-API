@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+const { Schema, model } = require ('mongoose')
 
 const HistoricSchema = new Schema({
     local: {
@@ -21,4 +21,4 @@ const HistoricSchema = new Schema({
 })
 
 const Historic = model("Historic", HistoricSchema)
-export { Historic }
+module.exports = { Historic }

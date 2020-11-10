@@ -1,5 +1,5 @@
-import { model, Schema } from 'mongoose'
-import  crypto from 'crypto'
+const { model, Schema } = require ('mongoose')
+const  crypto = require ('crypto')
 
 const UserSchema = new Schema({
     name: String,
@@ -33,4 +33,4 @@ UserSchema.virtual('image_url').get(function() {
 })
 
 const User = model("User", UserSchema)
-export { User }
+module.exports = { User }

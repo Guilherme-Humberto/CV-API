@@ -1,6 +1,6 @@
-import { Camp } from '../../models/Camp'
+const { Camp } = require ('../../models/Camp')
 
-export default {
+module.exports = {
     async create(req, res) {
         const { name } = req.body
 

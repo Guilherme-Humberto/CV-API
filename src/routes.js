@@ -1,13 +1,13 @@
-import express from 'express'
+const express = require ('express')
 const router = express.Router()
-import multer from 'multer'
-import multerConfig from './config/multer'
+const multer = require ('multer')
+const multerConfig = require ('./config/multer')
 
-import controller from './controllers/User/UserController'
-import session from './controllers/User/UserSessionController'
-import historic from './controllers/Historic/HistoricController'
-import campaigns from './controllers/Campaigns/CampController'
-import institutions from './controllers/Institutions/InstController'
+const controller = require ('./controllers/User/UserController')
+const session = require ('./controllers/User/UserSessionController')
+const historic = require ('./controllers/Historic/HistoricController')
+const campaigns = require ('./controllers/Campaigns/CampController')
+const institutions = require ('./controllers/Institutions/InstController')
 
 router.get("/listUser", controller.listUser)
 router.post("/register", controller.create)
@@ -27,4 +27,4 @@ router.post("/institutions", institutions.register)
 router.get("/institutions", institutions.list)
 router.get("/institutions/:id", institutions.getById)
 
-export { router }
+module.exports = { router }

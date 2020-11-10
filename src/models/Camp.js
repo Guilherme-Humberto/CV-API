@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+const { Schema, model } = require ('mongoose')
 
 const CampSchema = new Schema({
     img: {
@@ -29,4 +29,4 @@ const CampSchema = new Schema({
 })
 
 const Camp = model("Camp", CampSchema)
-export  { Camp }
+module.exports = { Camp }

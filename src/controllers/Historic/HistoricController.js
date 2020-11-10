@@ -1,6 +1,6 @@
-import { Historic } from '../../models/Hist'
+const { Historic } = require ('../../models/Hist')
 
-export default {
+module.exports = {
     async register(req, res) {
         try {
             const { user_id } = req.params

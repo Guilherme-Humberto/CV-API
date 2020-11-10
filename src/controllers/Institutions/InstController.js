@@ -1,6 +1,6 @@
-import { Inst } from '../../models/Inst'
+const { Inst } = require ('../../models/Inst')
 
-export default {
+module.exports = {
     async register(req, res) {
         const { name } = req.body
         try {

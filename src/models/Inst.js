@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+const { Schema, model } = require ('mongoose')
 
 const InstSchema = new Schema({
     name: {
@@ -37,4 +37,4 @@ const InstSchema = new Schema({
 })
 
 const Inst = model("Inst", InstSchema)
-export { Inst }
+module.exports = { Inst }

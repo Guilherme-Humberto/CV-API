@@ -1,8 +1,8 @@
-import { User } from '../../models/User'
-import jwt from 'jsonwebtoken'
-import authConfig from '../../config/auth.json'
+const { User } = require ('../../models/User')
+const jwt = require ('jsonwebtoken')
+const authConfig = require ('../../config/auth.json')
 
-export default {
+module.exports = {
     async authenticated(req, res) {
         const { email, password } = req.body
         try {
