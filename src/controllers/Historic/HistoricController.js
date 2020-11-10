@@ -4,15 +4,12 @@ export default {
     async register(req, res) {
         try {
             const { user_id } = req.params
-            const { local, typeDonation } = req.body
-
-            const data = Date.now()
-            const today = new Date(data)
+            const { local, typeDonation, date } = req.body
 
             const historic = await Historic.create({
                 user: user_id,
                 local,
-                date: today.toLocaleDateString(),
+                date,
                 typeDonation
             })
             return res.json(historic)
