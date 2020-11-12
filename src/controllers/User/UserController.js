@@ -1,3 +1,5 @@
+// Controller do usuário
+
 const { User } = require ('../../models/User')
 const jwt = require ('jsonwebtoken')
 const authConfig = require ('../../config/auth.json')
@@ -41,5 +43,20 @@ module.exports = {
             blood
         }, { new: true })
         return res.send(user)
+    },
+
+    async editUserPerfil (req, res) {
+        const { filename } = req.file
+        const { email, adress, number, bio, cell } = req.body
+
+        const user = await User.findByIdAndUpdate(req.params.id, {
+            email,
+            img: filename,
+            cell,
+            adress,
+            number,
+            bio
+        }, { new: true })
+        return res.json(user)
     }
 }

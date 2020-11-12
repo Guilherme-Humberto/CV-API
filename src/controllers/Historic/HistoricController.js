@@ -1,3 +1,5 @@
+// Controller dos histórico
+
 const { Historic } = require ('../../models/Hist')
 
 module.exports = {

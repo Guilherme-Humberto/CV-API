@@ -1,3 +1,5 @@
+// Controller das companhas
+
 const { Camp } = require ('../../models/Camp')
 
 module.exports = {

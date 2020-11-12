@@ -1,3 +1,5 @@
+// Controller das instituições
+
 const { Inst } = require ('../../models/Inst')
 
 module.exports = {
