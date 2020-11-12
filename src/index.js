@@ -1,3 +1,5 @@
+// Configurando servidor
+
 const express = require ('express')
 const app = express()
 const bodyparser = require ('body-parser')
@@ -15,4 +17,4 @@ app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use('/files', express.static(path.resolve(__dirname, '..', 'temp', 'uploads')));
 
-app.listen(process.env.PORT || 5001)
+app.listen(process.env.PORT || 5001, () => console.log("Conectado ao servidor"))
