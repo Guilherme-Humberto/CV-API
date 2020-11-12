@@ -1,3 +1,5 @@
+// Model de campanhas
+
 const { Schema, model } = require ('mongoose')
 
 const CampSchema = new Schema({

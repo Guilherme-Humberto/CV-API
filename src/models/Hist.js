@@ -1,3 +1,5 @@
+// Model de históricos
+
 const { Schema, model } = require ('mongoose')
 
 const HistoricSchema = new Schema({

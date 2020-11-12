@@ -1,3 +1,5 @@
+// Model de usuário
+
 const { model, Schema } = require ('mongoose')
 const  crypto = require ('crypto')
 

@@ -1,3 +1,5 @@
+// Model de Instituições
+
 const { Schema, model } = require ('mongoose')
 
 const InstSchema = new Schema({
