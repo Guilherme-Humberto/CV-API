@@ -1,3 +1,7 @@
+// Configurado Multer
+// Local de armazenamento das imagens
+// Formatos suportados
+
 const multer = require ('multer')
 const path = require ('path')
 const crypto = require ('crypto')
