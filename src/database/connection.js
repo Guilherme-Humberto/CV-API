@@ -1,3 +1,5 @@
+// Conexão com banco de dados
+
 const { connect } = require ('mongoose')
 require('dotenv/config')
 
