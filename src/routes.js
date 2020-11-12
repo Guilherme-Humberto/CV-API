@@ -1,3 +1,5 @@
+// Configurando rotas
+
 const express = require ('express')
 const router = express.Router()
 const multer = require ('multer')
@@ -12,8 +14,9 @@ const institutions = require ('./controllers/Institutions/InstController')
 router.get("/listUser", controller.listUser)
 router.post("/register", controller.create)
 router.put("/editUser/:id", multer(multerConfig).single('img'), controller.editUser)
+router.put("/editUserPerfil/:id", multer(multerConfig).single('img'), controller.editUserPerfil)
 router.post("/login", session.authenticated)
-router.post("/forgot", session.forgotPassword)
+router.put("/forgot", session.forgotPassword)
 
 router.post("/historic/:user_id", historic.register)
 router.get("/historic/list/:user_id", historic.listar)
