@@ -1,7 +1,7 @@
 // Model de usuário
 
 const { model, Schema } = require ('mongoose')
-const  crypto = require ('crypto')
+const bcrypt = require ('bcryptjs')
 
 const UserSchema = new Schema({
     name: String,
@@ -10,14 +10,7 @@ const UserSchema = new Schema({
         required: false
     },
     email: String,
-    password: {
-        type: String,
-        set: value => 
-            crypto
-                .createHash("md5")
-                .update(value)
-                .digest("hex")
-    },
+    password: String,
     age: String,
     adress: String,
     number: Number,
@@ -28,6 +21,12 @@ const UserSchema = new Schema({
     toJSON: {
         virtuals: true
     }
+})
+
+UserSchema.pre("save", async function (next) {
+    const hash = await bcrypt.hash(this.password, 10)
+    this.password = hash
+    next()
 })
 
 UserSchema.virtual('image_url').get(function() {
