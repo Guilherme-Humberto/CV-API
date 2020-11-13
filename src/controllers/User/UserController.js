@@ -2,6 +2,7 @@
 
 const { User } = require ('../../models/User')
 const jwt = require ('jsonwebtoken')
+const bcrypt = require("bcryptjs")
 const authConfig = require ('../../config/auth.json')
 
 module.exports = {
@@ -47,7 +48,9 @@ module.exports = {
 
     async editUserPerfil (req, res) {
         const { filename } = req.file
-        const { email, adress, number, bio, cell } = req.body
+        const { email, adress, number, bio, cell, password } = req.body
+
+        const hash = await bcrypt.hash(password, 10)
 
         const user = await User.findByIdAndUpdate(req.params.id, {
             email,
@@ -55,7 +58,8 @@ module.exports = {
             cell,
             adress,
             number,
-            bio
+            bio,
+            password: hash
         }, { new: true })
         return res.json(user)
     }

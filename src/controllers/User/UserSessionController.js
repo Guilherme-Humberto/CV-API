@@ -2,17 +2,23 @@
 
 const { User } = require ('../../models/User')
 const jwt = require ('jsonwebtoken')
+const bcrypt = require("bcryptjs")
 const authConfig = require ('../../config/auth.json')
 
 module.exports = {
     async authenticated(req, res) {
-        const { email, password } = req.body
         try {
-            const user = await User.findOne({ email, password })
+            const { email, password } = req.body
+
+            const user = await User.findOne({ email })
             if(!user) {
-                return res.status(401).jsno("Usuário não encontrado")
+                return res.status(401).send({ error: "Usuário não encontrado"})
             }
-            
+
+            if(!await bcrypt.compare(password, user.password)) {
+                return status(401).send({ error: "Senha inválida" })
+            }
+
             const token = jwt.sign({ id: user.id }, authConfig.secret, {
                 expiresIn: 86400
             })
@@ -20,24 +26,27 @@ module.exports = {
             return res.send({ user, token })
         }
         catch (error) {
-            return res.send({ error: `Erro ao logar usuário ${error}` })
+            return res.status(401).send({ error: `Erro ao logar usuário ${error}` })
         }
     },
 
     async forgotPassword (req, res) {
         const { email, password } = req.body
 
-        const user = await User.findOne({ email })
-
-        if(!user) {
-            return res.send({ error: "Usuário não existe" })
+        if(!await User.findOne({ email })) {
+            return res.send({ error: "Usuário não encontrado" })
         }
 
-        const token = jwt.sign({ id: user.id }, authConfig.secret, {
-            expiresIn: 86400
-        })
+        const hash = await bcrypt.hash(password, 10)
 
-        const users = await User.findOneAndUpdate({ email }, { password }, { new: true })
-        return res.send({ users, token })
+        const user = await User.findOneAndUpdate({email}, {
+            password: hash
+        }, { new: true })
+
+        if(!user) {
+            return res.send({ error: "Usuário não encontrado" })
+        }
+
+        return res.send({ user })
     }
 }
