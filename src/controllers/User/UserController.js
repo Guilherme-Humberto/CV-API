@@ -58,8 +58,7 @@ module.exports = {
             cell,
             adress,
             number,
-            bio,
-            password: hash
+            bio
         }, { new: true })
         return res.json(user)
     }
