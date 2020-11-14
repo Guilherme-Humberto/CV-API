@@ -21,15 +21,15 @@ module.exports = {
         }
     }),
     limits: { fileSize: 2 * 1024 * 1024 }, 
-    fileFilter: (req, file, cb) => {
-        const allowedMimes = [
-            'image/jpeg',
-            'image/jpg',
-            'image/png',
-            'image/gif',
-            'image/jfif'
-        ]
+    // fileFilter: (req, file, cb) => {
+    //     const allowedMimes = [
+    //         'image/jpeg',
+    //         'image/jpg',
+    //         'image/png',
+    //         'image/gif',
+    //         'image/jfif'
+    //     ]
 
-        allowedMimes.includes(file.mimetype) ? cb(null, true) : cb(new Error('Invalid file type'))
-    }
+    //     allowedMimes.includes(file.mimetype) ? cb(null, true) : cb(new Error('Invalid file type'))
+    // }
 }
