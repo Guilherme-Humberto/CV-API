@@ -33,20 +33,17 @@ module.exports = {
     async forgotPassword (req, res) {
         const { email, password } = req.body
 
-        if(!await User.findOne({ email })) {
+        let user = await User.findOne({ email })
+        if(!user) {
             return res.send({ error: "Usuário não encontrado" })
         }
 
         const hash = await bcrypt.hash(password, 10)
 
-        const user = await User.findOneAndUpdate({email}, {
+        const newUser = await User.findOneAndUpdate({email}, {
             password: hash
         }, { new: true })
 
-        if(!user) {
-            return res.send({ error: "Usuário não encontrado" })
-        }
-
-        return res.send({ user })
+        return res.send({ newUser })
     }
 }
