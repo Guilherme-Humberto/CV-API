@@ -9,8 +9,7 @@ const HistoricSchema = new Schema({
     },
     date: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     typeDonation: {
         type: String,
