@@ -40,7 +40,7 @@ module.exports = {
 
         const hash = await bcrypt.hash(password, 10)
 
-        const newUser = await User.findOneAndUpdate({email}, {
+        const newUser = await User.findOneAndUpdate(email, {
             password: hash
         }, { new: true })
 
