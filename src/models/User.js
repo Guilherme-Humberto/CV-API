@@ -1,5 +1,3 @@
-// Model de usuário
-
 const { model, Schema } = require ('mongoose')
 const bcrypt = require ('bcryptjs')
 
